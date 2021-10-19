@@ -1,0 +1,22 @@
+{
+  "name": "-front-end-p7-openclassrooms",
+  "version": "1.0.0",
+  "description": "-Front-End-P7-OpenClassrooms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DylanNicolet/-Front-End-P7-OpenClassrooms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DylanNicolet/-Front-End-P7-OpenClassrooms/issues"
+  },
+  "homepage": "https://github.com/DylanNicolet/-Front-End-P7-OpenClassrooms#readme",
+  "devDependencies": {
+    "eslint": "^8.0.1"
+  }
+}
