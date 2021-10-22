@@ -1,0 +1,19 @@
+//Bootstrap overides
+$success: rgb(24, 199, 106);
+
+//Custom CSS
+#main-searchbar::placeholder{
+    color:rgb(161, 161, 161);
+}
+
+#ingredients-filter::placeholder{
+    color: white;
+}
+
+#device-filter::placeholder{
+    color: white;
+}
+
+#ustensils-filter::placeholder{
+    color: white;
+}

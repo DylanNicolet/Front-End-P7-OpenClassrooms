@@ -33,9 +33,10 @@ for (let i=0; i<recipes.length; i++){
     newTitle.classList.add("card-title", "m-0");
     timerIcon.classList.add("far", "fa-clock", "mx-2");
     timer.classList.add("m-0");
-    list.classList.add("list-group");
-    recipeDescription.classList.add("card-text")
-    ingredientsWithDescription.classList.add("d-flex");
+    list.classList.add("col-6", "list-group");
+    recipeDescription.classList.add("col-6", "mx-1", "card-text");
+    recipeDescription.setAttribute("style", "font-size:0.7rem; text-overflow:ellipsis");
+    ingredientsWithDescription.classList.add("col-12", "d-flex", "h-50");
 
     cardContainer.appendChild(newCardCol);
     newCardCol.appendChild(newCard);
@@ -67,7 +68,9 @@ for (let i=0; i<recipes.length; i++){
         }
         
         listItem.classList.add("list-unstyled", "d-flex");
-        ingredientName.classList.add("font-weight-bold", "mb-0");
+        listItem.setAttribute("style", "font-size:0.7rem");
+        ingredientName.classList.add("mb-0");
+        ingredientName.setAttribute("style", "font-weight:700");
         ingredientQuantity.classList.add("mb-0");
 
         list.appendChild(listItem);

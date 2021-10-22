@@ -23,7 +23,7 @@
 
         <!--Search Bar-->
         <section class="input-group mb-3">
-            <input class="form-control border-0 bg-light" placeholder="Search an ingredient, device, ustensil or a recipe">
+            <input id="main-searchbar" class="form-control border-0 bg-light" placeholder="Search an ingredient, device, ustensil or a recipe">
             <span class="input-group-append bg-white border-0">
                 <a class="input-group-text bg-light btn border-0" href="#">
                     <i class="fas fa-search"></i>
@@ -39,24 +39,58 @@
         </section>
 
         <!--Main Filters-->
-        <section class="row d-inline-flex">
-            <section class="col-3">
-                <button class="d-flex align-items-center justify-content-between rounded border-0 py-1 text-light bg-primary">
-                    <input class="form-control bg-primary border-0" id="searchInput" type="text" placeholder="Ingredients">
-                    <i class="fas fa-chevron-down mx-2"></i>
-                </button>
+        <section class="row">
+            <section class="col-2">
+                <section class="input-group bg-primary rounded">
+                    <input type="text" id="ingredients-filter" class="text-light form-control bg-primary border-primary" placeholder="Ingredients">
+                    <div class="input-group-append">
+                        <button class="btn text-light" type="button" data-toggle="dropdown">
+                        <i class="fas fa-chevron-down mx-2"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </section>
             </section>
-            <section class="col-3">
-                <button class="d-flex align-items-center justify-content-between rounded border-0 py-1 text-light bg-success">
-                    <input class="form-control bg-success border-0" id="searchInput" type="text" placeholder="Devices">
-                    <i class="fas fa-chevron-down mx-2"></i>
-                </button>
+
+            <section class="col-2">
+                <div class="input-group bg-success rounded">
+                    <input type="text" id="device-filter" class="text-light form-control bg-success border-success" placeholder="Device">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary text-light bg-success border-success" type="button" data-toggle="dropdown">
+                        <i class="fas fa-chevron-down mx-2"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
             </section>
-            <section class="col-3">
-                <button class="d-flex align-items-center justify-content-between rounded border-0 py-1 text-light bg-danger">
-                    <input class="form-control bg-danger border-0" id="searchInput" type="text" placeholder="Ustensils">
-                    <i class="fas fa-chevron-down mx-2"></i>
-                </button>
+            <section class="col-2">
+                <div class="input-group bg-danger rounded">
+                    <input type="text" id="ustensils-filter" class="text-light form-control bg-danger border-danger" placeholder="Ustensils">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary text-light bg-danger border-danger" type="button" data-toggle="dropdown">
+                        <i class="fas fa-chevron-down mx-2"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
             </section>
         </section>
 
