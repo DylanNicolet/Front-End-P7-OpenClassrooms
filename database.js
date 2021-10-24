@@ -38,7 +38,7 @@ const recipes = [
         "servings": 2,
         "ingredients": [
             {
-                "ingredient" : "Bluefin Tuna (or albacore)",
+                "ingredient" : "Bluefin Tuna",
                 "quantity" : 200,
                 "unit" : "grams"
             },
