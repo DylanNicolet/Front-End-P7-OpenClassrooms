@@ -35,9 +35,10 @@ function loadRecipeCards(){
         newTitle.classList.add("card-title", "m-0");
         timerIcon.classList.add("far", "fa-clock", "mx-2");
         timer.classList.add("m-0");
+        timer.setAttribute("style", "white-space: nowrap;");
         list.classList.add("col-6", "list-group");
         recipeDescription.classList.add("col-6", "mx-1", "card-text");
-        recipeDescription.setAttribute("style", "font-size:0.7rem; text-overflow:ellipsis");
+        recipeDescription.setAttribute("style", "font-size:0.7rem; -webkit-line-clamp:4; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden; max-height: 70px;");
         ingredientsWithDescription.classList.add("col-12", "d-flex", "h-50");
 
         cardContainer.appendChild(newCardCol);
@@ -61,10 +62,10 @@ function loadRecipeCards(){
             const listItem = document.createElement('li');
             const ingredientName = document.createElement('p');
             const ingredientQuantity = document.createElement('p');
-            ingredientName.textContent = recipeIngredients[j].ingredient + ":";
+            ingredientName.innerHTML = recipeIngredients[j].ingredient + ":" + "&nbsp";
 
             if(keys.includes("quantity") && keys.includes("unit")){
-                ingredientQuantity.textContent = recipeIngredients[j].quantity + recipeIngredients[j].unit;
+                ingredientQuantity.innerHTML = recipeIngredients[j].quantity + recipeIngredients[j].unit;
             } else {
                 ingredientQuantity.textContent = recipeIngredients[j].quantity;
             }
