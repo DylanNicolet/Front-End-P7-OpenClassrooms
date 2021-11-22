@@ -1,8 +1,14 @@
 //DOM elements
 const bodyContainer = document.getElementById('body-container');
 const cardContainer = document.getElementById('card-container');
+const ingredientsDropdown = document.getElementById('ingredients-dropdown');
+const devicesDropdown = document.getElementById('devices-dropdown');
+const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 
 let filteredRecipes = recipes;
+let ingredientsArray = [];
+let devicesArray = [];
+let ustensilsArray = [];
 
 //Function to load cards using filteredrecipe Array
 function loadRecipeCards(){
@@ -79,12 +85,74 @@ function loadRecipeCards(){
             list.appendChild(listItem);
             listItem.appendChild(ingredientName);
             listItem.appendChild(ingredientQuantity);
+
+            //Add every ingredients to ingredientsArray for advanced tag search
+            ingredientsArray.push(recipeIngredients[j].ingredient);
+        }
+
+        //Add every devices to devicesArray
+        devicesArray.push(filteredRecipes[i].appliance);
+
+        //Add every ustensils to ustensilsArray
+        let allUstensils = filteredRecipes[i].ustensils;
+        for (let k=0; k<allUstensils.length; k++){
+            ustensilsArray.push(allUstensils[k]);
         }
     };
 }
 
-//function call to load initial homepage cards
+//function to load ingredients of the advanced tag search
+function loadIngredientTags(){
+    ingredientsArray.sort();
+    ingredientsArray = [...new Set(ingredientsArray)];
+    
+    for (let i=0; i<ingredientsArray.length; i++){
+        const newIngredientTag = document.createElement('a');
+
+        newIngredientTag.classList.add("dropdown-item");
+        newIngredientTag.setAttribute("href", "#");
+        newIngredientTag.textContent = ingredientsArray[i];
+
+        ingredientsDropdown.appendChild(newIngredientTag);
+    }
+}
+
+//function to load Devices of the advanced tag search
+function loadDeviceTags(){
+    devicesArray.sort();
+    devicesArray = [...new Set(devicesArray)];
+
+    for (let i=0; i<devicesArray.length; i++){
+        const newDeviceTag = document.createElement('a');
+
+        newDeviceTag.classList.add("dropdown-item");
+        newDeviceTag.setAttribute("href", "#");
+        newDeviceTag.textContent = devicesArray[i];
+
+        devicesDropdown.appendChild(newDeviceTag);
+    }
+}
+
+//function to load Ustensils of the advanced tag search
+function loadUstensilsTags(){
+    
+    ustensilsArray.sort();
+    ustensilsArray = [...new Set(ustensilsArray)];
+
+    for (let i=0; i<ustensilsArray.length; i++){
+        const newUstensilTag = document.createElement('a');
+
+        newUstensilTag.classList.add("dropdown-item");
+        newUstensilTag.setAttribute("href", "#");
+        newUstensilTag.textContent = ustensilsArray[i];
+
+        ustensilsDropdown.appendChild(newUstensilTag);
+    }
+}
+
+
+//function call to load initial homepage
 loadRecipeCards();
-
-
-
+loadIngredientTags();
+loadDeviceTags();
+loadUstensilsTags();

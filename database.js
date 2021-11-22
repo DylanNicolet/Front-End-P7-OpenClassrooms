@@ -59,7 +59,7 @@ const recipes = [
                 "quantity" : 5
             },
             {
-                "ingredient" : "Coconut Milk",
+                "ingredient" : "Coconut milk",
                 "quantity" : 100,
                 "unit" : "ml"
             }
@@ -165,7 +165,7 @@ const recipes = [
                "unit": "tablespoons"
            },
            {
-               "ingredient": "grated Gruyere",
+               "ingredient": "Grated Gruyere",
                "quantity": 100,
                "unit": "grams"
            },
@@ -281,7 +281,7 @@ const recipes = [
                "unit": "grams"
            },
            {
-                "ingredient": "flour",
+                "ingredient": "Flour",
                 "quantity": 90,
                 "unit": "grams"
            }
@@ -452,7 +452,7 @@ const recipes = [
                 "unit":"tablespoon"
             },
             {
-                "ingredient": "olive oil",
+                "ingredient": "Olive oil",
                 "quantity": 2,
                 "unit": "tablespoon"
             }
@@ -567,7 +567,7 @@ const recipes = [
                 "unit":"vines"
             },
             {
-                "ingredient": "olive oil",
+                "ingredient": "Olive oil",
                 "quantity": 2,
                 "unit": "tablespoon"
             }
@@ -693,7 +693,7 @@ const recipes = [
                 "unit":"grams"
             },
             {
-                "ingredient": "olive oil",
+                "ingredient": "Olive oil",
                 "quantity": 1,
                 "unit": "tablespoons"
             }
@@ -740,7 +740,7 @@ const recipes = [
         ],
         "time": 30,
         "description":"Cook the minced meat in a frying pan. In another, cook the onions, chopped into thin cubes, with a bit of butter. Add some red wine. Mix the onions with the minced meat. Cook the pasta for the time shown on the packet. Add the tomato coulis to the minced meat. Once the pasta is cooked, add the crème fraîche to the minced meat. Serve.",
-        "appliance": "Pan.",
+        "appliance": "Pan",
         "ustensils":["Cuillère en bois", "louche", "couteau"]
     },
     {
@@ -1507,7 +1507,7 @@ const recipes = [
                 "unit":"grams"
             },
             {
-                "ingredient": "flour",
+                "ingredient": "Flour",
                 "quantity": 40,
                 "unit": "grams"
             }
