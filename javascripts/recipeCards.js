@@ -4,6 +4,8 @@ const cardContainer = document.getElementById('card-container');
 const ingredientsDropdown = document.getElementById('ingredients-dropdown');
 const devicesDropdown = document.getElementById('devices-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
+const dropDownItems = document.getElementsByClassName('dropdown-item');
+const selectedFilters = document.getElementById('selected-filters');
 
 let filteredRecipes = recipes;
 let ingredientsArray = [];
@@ -109,7 +111,7 @@ function loadIngredientTags(){
     for (let i=0; i<ingredientsArray.length; i++){
         const newIngredientTag = document.createElement('a');
 
-        newIngredientTag.classList.add("dropdown-item");
+        newIngredientTag.classList.add("dropdown-item", "text-light");
         newIngredientTag.setAttribute("href", "#");
         newIngredientTag.textContent = ingredientsArray[i];
 
@@ -125,7 +127,7 @@ function loadDeviceTags(){
     for (let i=0; i<devicesArray.length; i++){
         const newDeviceTag = document.createElement('a');
 
-        newDeviceTag.classList.add("dropdown-item");
+        newDeviceTag.classList.add("dropdown-item", "text-light");
         newDeviceTag.setAttribute("href", "#");
         newDeviceTag.textContent = devicesArray[i];
 
@@ -142,7 +144,7 @@ function loadUstensilsTags(){
     for (let i=0; i<ustensilsArray.length; i++){
         const newUstensilTag = document.createElement('a');
 
-        newUstensilTag.classList.add("dropdown-item");
+        newUstensilTag.classList.add("dropdown-item", "text-light");
         newUstensilTag.setAttribute("href", "#");
         newUstensilTag.textContent = ustensilsArray[i];
 
@@ -156,3 +158,21 @@ loadRecipeCards();
 loadIngredientTags();
 loadDeviceTags();
 loadUstensilsTags();
+
+
+//function to create advanced search tags
+for(var i=0; i<dropDownItems.length; i++){
+    dropDownItems[i].addEventListener("click", ($event) => {
+        const newFilter = document.createElement('div');
+        const newCloseIcon = document.createElement('i');
+
+        let parentBackground = $event.target.parentNode.classList[0];
+
+        newFilter.classList.add(parentBackground, "text-light", "rounded", "px-3", "py-1", "mb-2", "me-2");
+        newFilter.textContent = $event.target.textContent;
+        newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
+
+        selectedFilters.appendChild(newFilter);
+        newFilter.appendChild(newCloseIcon);
+    });
+}
