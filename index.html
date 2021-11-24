@@ -39,50 +39,40 @@
         </section>
 
         <!--Advanced filters-->
-        <section class="row">
-            <section class="col-2">
-                <section class="input-group bg-primary rounded">
-                    <input type="text" id="ingredients-filter" class="text-light form-control bg-primary border-primary" placeholder="Ingredients">
-                    <div class="input-group-append">
-                        <button class="btn text-light" type="button" data-toggle="dropdown">
-                        <i class="fas fa-chevron-down mx-2"></i>
-                        </button>
-                        <div class="dropdown-menu" id="ingredients-dropdown">
-                        </div>
-                    </div>
-                </section>
-            </section>
+        <div class="d-flex">
+            <div class="btn-group bg-primary rounded col-2">
+                <input type="text" class="text-light form-control bg-primary border-primary"  id="ingredients-filter" placeholder="Ingredients">
+                <button type="button" class="btn btn-primary rounded" id="dropdownMenuReference" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                    <i class="fas fa-chevron-down mx-2"></i>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu columns"  id="ingredients-dropdown" aria-labelledby="dropdownMenuReference">
+                </div>
+            </div>
 
-            <section class="col-2">
-                <div class="input-group bg-success rounded">
-                    <input type="text" id="device-filter" class="text-light form-control bg-success border-success" placeholder="Device">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary text-light bg-success border-success" type="button" data-toggle="dropdown">
-                        <i class="fas fa-chevron-down mx-2"></i>
-                        </button>
-                        <div class="dropdown-menu" id="devices-dropdown">
-                        </div>
-                    </div>
+            <div class="btn-group bg-success rounded mx-3 col-2">
+                <input type="text" class="text-light form-control bg-success border-success"  id="ingredients-filter" placeholder="Devices">
+                <button type="button" class="btn btn-success rounded text-light" id="dropdownMenuReference" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                    <i class="fas fa-chevron-down mx-2"></i>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu columns"  id="devices-dropdown" aria-labelledby="dropdownMenuReference">
                 </div>
-            </section>
-            <section class="col-2">
-                <div class="input-group bg-danger rounded">
-                    <input type="text" id="ustensils-filter" class="text-light form-control bg-danger border-danger" placeholder="Ustensils">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary text-light bg-danger border-danger" type="button" data-toggle="dropdown">
-                        <i class="fas fa-chevron-down mx-2"></i>
-                        </button>
-                        <div class="dropdown-menu" id="ustensils-dropdown">
-                        </div>
-                    </div>
+            </div>
+
+            <div class="btn-group bg-danger rounded col-2">
+                <input type="text" class="text-light form-control bg-danger border-danger"  id="ingredients-filter" placeholder="Ustensils">
+                <button type="button" class="btn btn-danger rounded" id="dropdownMenuReference" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                    <i class="fas fa-chevron-down mx-2"></i>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu columns"  id="ustensils-dropdown" aria-labelledby="dropdownMenuReference">
                 </div>
-            </section>
-        </section>
+            </div>
+        </div>
 
         <!--Recipe list-->
-        <section class="row my-4" id="card-container">
-
-        </section>
+        <section class="row my-4" id="card-container"></section>
     </section>
 
     <script src="/database.js" type="text/javascript"></script>

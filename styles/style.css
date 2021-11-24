@@ -62,6 +62,11 @@
   color: white;
 }
 
+.columns {
+  -webkit-column-count: 3;
+          column-count: 3;
+}
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
