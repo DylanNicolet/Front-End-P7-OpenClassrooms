@@ -161,7 +161,7 @@ loadUstensilsTags();
 
 
 //function to create advanced search tags
-let advancedSearchArray = [];
+let advancedSearchArray = "";
 
 for(var i=0; i<dropDownItems.length; i++){
     dropDownItems[i].addEventListener("click", ($event) => {
@@ -177,6 +177,38 @@ for(var i=0; i<dropDownItems.length; i++){
 
         selectedFilters.appendChild(newFilter);
         newFilter.appendChild(newCloseIcon);
+
+        advancedSearchArray += $event.target.textContent.toLowerCase();
+
+
+        for(let j=0; j<filteredRecipes.length; j++){
+            let recipeDevices = filteredRecipes[j].appliance.toLowerCase() + "&nbsp";
+            let currentRecipeIngredients = filteredRecipes[j].ingredients;
+            let currentRecipeUstensils = filteredRecipes[j].ustensils;
+            let ingredientList = "";
+            let ustensilList = "";
+            
+
+            for(let k=0; k<currentRecipeIngredients.length; k++){
+                ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
+            }
+
+            for(let l=0; l<currentRecipeUstensils.length; l++){
+                ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
+            }
+
+            let totalRecipeData = recipeDevices += ustensilList += ingredientList;
+
+            //filter the array instead of re-writting it
+            if(totalRecipeData.includes(advancedSearchArray)){
+                filteredRecipes.push(recipes[j]);
+            }
+            
+        }
+
+        cardContainer.innerHTML = "";
+        loadRecipeCards();
+        console.log(advancedSearchArray);
     });
 };
 
