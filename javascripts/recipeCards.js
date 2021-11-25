@@ -161,6 +161,8 @@ loadUstensilsTags();
 
 
 //function to create advanced search tags
+let advancedSearchArray = [];
+
 for(var i=0; i<dropDownItems.length; i++){
     dropDownItems[i].addEventListener("click", ($event) => {
         const newFilter = document.createElement('div');
@@ -170,9 +172,11 @@ for(var i=0; i<dropDownItems.length; i++){
 
         newFilter.classList.add(parentBackground, "text-light", "rounded", "px-3", "py-1", "mb-2", "me-2");
         newFilter.textContent = $event.target.textContent;
+        newFilter.setAttribute("style", "font-size:0.8rem");
         newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
 
         selectedFilters.appendChild(newFilter);
         newFilter.appendChild(newCloseIcon);
     });
-}
+};
+
