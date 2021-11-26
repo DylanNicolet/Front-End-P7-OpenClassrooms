@@ -160,8 +160,8 @@ loadDeviceTags();
 loadUstensilsTags();
 
 
-//function to create advanced search tags
-let advancedSearchArray = "";
+//function add tags and filter recipe cards from selecting an advanced search tag
+let advancedSearchArray = [];
 
 for(var i=0; i<dropDownItems.length; i++){
     dropDownItems[i].addEventListener("click", ($event) => {
@@ -178,13 +178,13 @@ for(var i=0; i<dropDownItems.length; i++){
         selectedFilters.appendChild(newFilter);
         newFilter.appendChild(newCloseIcon);
 
-        advancedSearchArray += $event.target.textContent.toLowerCase();
+        advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
 
 
-        for(let j=0; j<filteredRecipes.length; j++){
-            let recipeDevices = filteredRecipes[j].appliance.toLowerCase() + "&nbsp";
-            let currentRecipeIngredients = filteredRecipes[j].ingredients;
-            let currentRecipeUstensils = filteredRecipes[j].ustensils;
+        function advancedFilter(recipe){ //filtering function, recalled at line 207
+            let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
+            let currentRecipeIngredients = recipe.ingredients;
+            let currentRecipeUstensils = recipe.ustensils;
             let ingredientList = "";
             let ustensilList = "";
             
@@ -199,16 +199,14 @@ for(var i=0; i<dropDownItems.length; i++){
 
             let totalRecipeData = recipeDevices += ustensilList += ingredientList;
 
-            //filter the array instead of re-writting it
-            if(totalRecipeData.includes(advancedSearchArray)){
-                filteredRecipes.push(recipes[j]);
-            }
-            
+            let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
+
+            return doesArrayContainSearchInput;
         }
 
-        cardContainer.innerHTML = "";
-        loadRecipeCards();
-        console.log(advancedSearchArray);
+        filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+        cardContainer.innerHTML = ""; //clear cards
+        loadRecipeCards(); //reload cards using new data
     });
 };
-
