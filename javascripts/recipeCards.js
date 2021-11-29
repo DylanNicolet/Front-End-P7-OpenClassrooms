@@ -6,6 +6,7 @@ const devicesDropdown = document.getElementById('devices-dropdown');
 const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const dropDownItems = document.getElementsByClassName('dropdown-item');
 const selectedFilters = document.getElementById('selected-filters');
+const tagRemoveIcon = document.getElementsByClassName('tag-close-button');
 
 let filteredRecipes = recipes;
 let ingredientsArray = [];
@@ -160,12 +161,15 @@ loadDeviceTags();
 loadUstensilsTags();
 
 
-//function add tags and filter recipe cards from selecting an advanced search tag
-let advancedSearchArray = [];
+//Adddd tags and filter recipe cards when selecting an advanced search tag
+let advancedSearchArray = [];//array used for filtering recipes
 
-for(var i=0; i<dropDownItems.length; i++){
+
+for(let i=0; i<dropDownItems.length; i++){
     dropDownItems[i].addEventListener("click", ($event) => {
+        
         const newFilter = document.createElement('div');
+        const newCloseAnchor = document.createElement('a');
         const newCloseIcon = document.createElement('i');
 
         let parentBackground = $event.target.parentNode.classList[0];
@@ -174,9 +178,13 @@ for(var i=0; i<dropDownItems.length; i++){
         newFilter.textContent = $event.target.textContent;
         newFilter.setAttribute("style", "font-size:0.8rem");
         newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
+        newCloseIcon.setAttribute("id", $event.target.textContent.toLowerCase());
+        newCloseAnchor.setAttribute("href", "#");
+        newCloseAnchor.classList.add("tag-close-button", "text-light");
 
         selectedFilters.appendChild(newFilter);
-        newFilter.appendChild(newCloseIcon);
+        newFilter.appendChild(newCloseAnchor);
+        newCloseAnchor.appendChild(newCloseIcon);
 
         advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
 
@@ -208,5 +216,14 @@ for(var i=0; i<dropDownItems.length; i++){
 
         cardContainer.innerHTML = ""; //clear cards
         loadRecipeCards(); //reload cards using new data
+
+        newCloseAnchor.addEventListener("click", ($event) => {
+
+            console.log($event.target.id);
+            //advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
+            console.log(advancedSearchArray);
+            
+            console.log($event);
+        });
     });
 };
