@@ -12,9 +12,12 @@ let filteredRecipes = recipes;
 let ingredientsArray = [];
 let devicesArray = [];
 let ustensilsArray = [];
+let advancedSearchArray = [];//array used for filtering recipes
 
 //Function to load cards using filteredrecipe Array
 function loadRecipeCards(){
+    ingredientsArray = [];
+
     for (let i=0; i<filteredRecipes.length; i++){
         const newCardCol = document.createElement('section');
         const newCard = document.createElement('section');
@@ -104,10 +107,11 @@ function loadRecipeCards(){
     };
 }
 
+
 //function to load ingredients of the advanced tag search
 function loadIngredientTags(){
-    ingredientsArray.sort();
-    ingredientsArray = [...new Set(ingredientsArray)];
+    ingredientsArray.sort(); //organise by alphabetical order
+    ingredientsArray = [...new Set(ingredientsArray)]; //removes duplicates
     
     for (let i=0; i<ingredientsArray.length; i++){
         const newIngredientTag = document.createElement('a');
@@ -117,6 +121,75 @@ function loadIngredientTags(){
         newIngredientTag.textContent = ingredientsArray[i];
 
         ingredientsDropdown.appendChild(newIngredientTag);
+
+        newIngredientTag.addEventListener("click", ($event) => { //event listener for every ingredient added
+            
+            const newFilter = document.createElement('div');
+            const newCloseAnchor = document.createElement('a');
+            const newCloseIcon = document.createElement('i');
+
+            let parentBackground = $event.target.parentNode.classList[0];
+
+            newFilter.classList.add(parentBackground, "text-light", "rounded", "px-3", "py-1", "mb-2", "me-2");
+            newFilter.textContent = $event.target.textContent;
+            newFilter.setAttribute("style", "font-size:0.8rem");
+            newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
+            newCloseIcon.setAttribute("id", $event.target.textContent.toLowerCase());
+            newCloseAnchor.setAttribute("href", "#");
+            newCloseAnchor.classList.add("tag-close-button", "text-light");
+
+            selectedFilters.appendChild(newFilter);
+            newFilter.appendChild(newCloseAnchor);
+            newCloseAnchor.appendChild(newCloseIcon);
+
+            advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
+
+
+            function advancedFilter(recipe){ //filtering function, recalled at line 207
+                let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
+                let currentRecipeIngredients = recipe.ingredients;
+                let currentRecipeUstensils = recipe.ustensils;
+                let ingredientList = "";
+                let ustensilList = "";
+                
+
+                for(let k=0; k<currentRecipeIngredients.length; k++){
+                    ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
+                }
+
+                for(let l=0; l<currentRecipeUstensils.length; l++){
+                    ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
+                }
+
+                let totalRecipeData = recipeDevices += ustensilList += ingredientList;
+
+                let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
+
+                return doesArrayContainSearchInput;
+            }
+
+            filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+
+            
+            cardContainer.innerHTML = ""; //clear cards
+            loadRecipeCards(); //reload cards using new data
+
+            ingredientsDropdown.innerHTML = "";
+            loadIngredientTags();
+
+            console.log(ingredientsArray);
+
+
+            /*newCloseAnchor.addEventListener("click", ($event) => {
+                $event.target.parentNode.parentNode.remove();
+                advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
+                filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+                loadRecipeCards;
+                console.log(advancedSearchArray);
+            });*/
+        });
     }
 }
 
@@ -153,77 +226,8 @@ function loadUstensilsTags(){
     }
 }
 
-
 //function call to load initial homepage
 loadRecipeCards();
 loadIngredientTags();
 loadDeviceTags();
 loadUstensilsTags();
-
-
-//Adddd tags and filter recipe cards when selecting an advanced search tag
-let advancedSearchArray = [];//array used for filtering recipes
-
-
-for(let i=0; i<dropDownItems.length; i++){
-    dropDownItems[i].addEventListener("click", ($event) => {
-        
-        const newFilter = document.createElement('div');
-        const newCloseAnchor = document.createElement('a');
-        const newCloseIcon = document.createElement('i');
-
-        let parentBackground = $event.target.parentNode.classList[0];
-
-        newFilter.classList.add(parentBackground, "text-light", "rounded", "px-3", "py-1", "mb-2", "me-2");
-        newFilter.textContent = $event.target.textContent;
-        newFilter.setAttribute("style", "font-size:0.8rem");
-        newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
-        newCloseIcon.setAttribute("id", $event.target.textContent.toLowerCase());
-        newCloseAnchor.setAttribute("href", "#");
-        newCloseAnchor.classList.add("tag-close-button", "text-light");
-
-        selectedFilters.appendChild(newFilter);
-        newFilter.appendChild(newCloseAnchor);
-        newCloseAnchor.appendChild(newCloseIcon);
-
-        advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
-
-
-        function advancedFilter(recipe){ //filtering function, recalled at line 207
-            let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
-            let currentRecipeIngredients = recipe.ingredients;
-            let currentRecipeUstensils = recipe.ustensils;
-            let ingredientList = "";
-            let ustensilList = "";
-            
-
-            for(let k=0; k<currentRecipeIngredients.length; k++){
-                ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
-            }
-
-            for(let l=0; l<currentRecipeUstensils.length; l++){
-                ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
-            }
-
-            let totalRecipeData = recipeDevices += ustensilList += ingredientList;
-
-            let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
-
-            return doesArrayContainSearchInput;
-        }
-
-        filteredRecipes = filteredRecipes.filter(advancedFilter);
-
-        cardContainer.innerHTML = ""; //clear cards
-        loadRecipeCards(); //reload cards using new data
-
-        newCloseAnchor.addEventListener("click", ($event) => {
-
-            console.log($event.target.id);
-            //advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
-            console.log(advancedSearchArray);
-            
-            console.log($event);
-        });
-    });
-};
