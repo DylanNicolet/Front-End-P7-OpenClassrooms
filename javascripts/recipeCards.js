@@ -17,6 +17,8 @@ let advancedSearchArray = [];//array used for filtering recipes
 //Function to load cards using filteredrecipe Array
 function loadRecipeCards(){
     ingredientsArray = [];
+    devicesArray = [];
+    ustensilsArray = [];
 
     for (let i=0; i<filteredRecipes.length; i++){
         const newCardCol = document.createElement('section');
@@ -145,7 +147,7 @@ function loadIngredientTags(){
             advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
 
 
-            function advancedFilter(recipe){ //filtering function, recalled at line 207
+            function advancedFilter(recipe){ //filtering function used right after
                 let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
                 let currentRecipeIngredients = recipe.ingredients;
                 let currentRecipeUstensils = recipe.ustensils;
@@ -177,8 +179,10 @@ function loadIngredientTags(){
 
             ingredientsDropdown.innerHTML = "";
             loadIngredientTags();
-
-            console.log(ingredientsArray);
+            devicesDropdown.innerHTML = "";
+            loadDeviceTags();
+            ustensilsDropdown.innerHTML = "";
+            loadUstensilsTags();
 
 
             /*newCloseAnchor.addEventListener("click", ($event) => {
@@ -195,9 +199,9 @@ function loadIngredientTags(){
 
 //function to load Devices of the advanced tag search
 function loadDeviceTags(){
-    devicesArray.sort();
-    devicesArray = [...new Set(devicesArray)];
-
+    devicesArray.sort(); //organise by alphabetical order
+    devicesArray = [...new Set(devicesArray)]; //removes duplicates
+    
     for (let i=0; i<devicesArray.length; i++){
         const newDeviceTag = document.createElement('a');
 
@@ -206,11 +210,169 @@ function loadDeviceTags(){
         newDeviceTag.textContent = devicesArray[i];
 
         devicesDropdown.appendChild(newDeviceTag);
+
+        newDeviceTag.addEventListener("click", ($event) => { //event listener for every ingredient added
+            
+            const newFilter = document.createElement('div');
+            const newCloseAnchor = document.createElement('a');
+            const newCloseIcon = document.createElement('i');
+
+            let parentBackground = $event.target.parentNode.classList[0];
+
+            newFilter.classList.add(parentBackground, "text-light", "rounded", "px-3", "py-1", "mb-2", "me-2");
+            newFilter.textContent = $event.target.textContent;
+            newFilter.setAttribute("style", "font-size:0.8rem");
+            newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
+            newCloseIcon.setAttribute("id", $event.target.textContent.toLowerCase());
+            newCloseAnchor.setAttribute("href", "#");
+            newCloseAnchor.classList.add("tag-close-button", "text-light");
+
+            selectedFilters.appendChild(newFilter);
+            newFilter.appendChild(newCloseAnchor);
+            newCloseAnchor.appendChild(newCloseIcon);
+
+            advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
+
+
+            function advancedFilter(recipe){ //filtering function used right after
+                let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
+                let currentRecipeIngredients = recipe.ingredients;
+                let currentRecipeUstensils = recipe.ustensils;
+                let ingredientList = "";
+                let ustensilList = "";
+                
+
+                for(let k=0; k<currentRecipeIngredients.length; k++){
+                    ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
+                }
+
+                for(let l=0; l<currentRecipeUstensils.length; l++){
+                    ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
+                }
+
+                let totalRecipeData = recipeDevices += ustensilList += ingredientList;
+
+                let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
+
+                return doesArrayContainSearchInput;
+            }
+
+            filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+
+            
+            cardContainer.innerHTML = ""; //clear cards
+            loadRecipeCards(); //reload cards using new data
+
+            ingredientsDropdown.innerHTML = "";
+            loadIngredientTags();
+            devicesDropdown.innerHTML = "";
+            loadDeviceTags();
+            ustensilsDropdown.innerHTML = "";
+            loadUstensilsTags();
+
+            /*newCloseAnchor.addEventListener("click", ($event) => {
+                $event.target.parentNode.parentNode.remove();
+                advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
+                filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+                loadRecipeCards;
+                console.log(advancedSearchArray);
+            });*/
+        });
     }
 }
 
-//function to load Ustensils of the advanced tag search
+//function to load ustensils of the advanced tag search
 function loadUstensilsTags(){
+    ustensilsArray.sort(); //organise by alphabetical order
+    ustensilsArray = [...new Set(ustensilsArray)]; //removes duplicates
+    
+    for (let i=0; i<ustensilsArray.length; i++){
+        const newUstensilsTag = document.createElement('a');
+
+        newUstensilsTag.classList.add("dropdown-item", "text-light");
+        newUstensilsTag.setAttribute("href", "#");
+        newUstensilsTag.textContent = ustensilsArray[i];
+
+        ustensilsDropdown.appendChild(newUstensilsTag);
+
+        newUstensilsTag.addEventListener("click", ($event) => { //event listener for every ingredient added
+            
+            const newFilter = document.createElement('div');
+            const newCloseAnchor = document.createElement('a');
+            const newCloseIcon = document.createElement('i');
+
+            let parentBackground = $event.target.parentNode.classList[0];
+
+            newFilter.classList.add(parentBackground, "text-light", "rounded", "px-3", "py-1", "mb-2", "me-2");
+            newFilter.textContent = $event.target.textContent;
+            newFilter.setAttribute("style", "font-size:0.8rem");
+            newCloseIcon.classList.add("far", "fa-times-circle", "ms-2");
+            newCloseIcon.setAttribute("id", $event.target.textContent.toLowerCase());
+            newCloseAnchor.setAttribute("href", "#");
+            newCloseAnchor.classList.add("tag-close-button", "text-light");
+
+            selectedFilters.appendChild(newFilter);
+            newFilter.appendChild(newCloseAnchor);
+            newCloseAnchor.appendChild(newCloseIcon);
+
+            advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
+
+
+            function advancedFilter(recipe){ //filtering function used right after
+                let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
+                let currentRecipeIngredients = recipe.ingredients;
+                let currentRecipeUstensils = recipe.ustensils;
+                let ingredientList = "";
+                let ustensilList = "";
+                
+
+                for(let k=0; k<currentRecipeIngredients.length; k++){
+                    ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
+                }
+
+                for(let l=0; l<currentRecipeUstensils.length; l++){
+                    ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
+                }
+
+                let totalRecipeData = recipeDevices += ustensilList += ingredientList;
+
+                let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
+
+                return doesArrayContainSearchInput;
+            }
+
+            filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+
+            
+            cardContainer.innerHTML = ""; //clear cards
+            loadRecipeCards(); //reload cards using new data
+
+            ingredientsDropdown.innerHTML = "";
+            loadIngredientTags();
+            devicesDropdown.innerHTML = "";
+            loadDeviceTags();
+            ustensilsDropdown.innerHTML = "";
+            loadUstensilsTags();
+
+
+            /*newCloseAnchor.addEventListener("click", ($event) => {
+                $event.target.parentNode.parentNode.remove();
+                advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
+                filteredRecipes = filteredRecipes.filter(advancedFilter);
+
+                loadRecipeCards;
+                console.log(advancedSearchArray);
+            });*/
+        });
+    }
+}
+
+
+//function to load Ustensils of the advanced tag search
+/*function loadUstensilsTags(){
     
     ustensilsArray.sort();
     ustensilsArray = [...new Set(ustensilsArray)];
@@ -224,7 +386,7 @@ function loadUstensilsTags(){
 
         ustensilsDropdown.appendChild(newUstensilTag);
     }
-}
+}*/
 
 //function call to load initial homepage
 loadRecipeCards();
