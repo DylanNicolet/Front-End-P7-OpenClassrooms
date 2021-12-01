@@ -7,12 +7,15 @@ const ustensilsDropdown = document.getElementById('ustensils-dropdown');
 const dropDownItems = document.getElementsByClassName('dropdown-item');
 const selectedFilters = document.getElementById('selected-filters');
 const tagRemoveIcon = document.getElementsByClassName('tag-close-button');
+const ingredientsInput = document.getElementById('ingredients-filter');
 
+
+//initialise needed arrays
 let filteredRecipes = recipes;
 let ingredientsArray = [];
 let devicesArray = [];
 let ustensilsArray = [];
-let advancedSearchArray = [];//array used for filtering recipes
+let advancedSearchArray = [];//array used for advanced filtering of recipes
 
 //Function to load cards using filteredrecipe Array
 function loadRecipeCards(){
@@ -371,25 +374,35 @@ function loadUstensilsTags(){
 }
 
 
-//function to load Ustensils of the advanced tag search
-/*function loadUstensilsTags(){
-    
-    ustensilsArray.sort();
-    ustensilsArray = [...new Set(ustensilsArray)];
 
-    for (let i=0; i<ustensilsArray.length; i++){
-        const newUstensilTag = document.createElement('a');
-
-        newUstensilTag.classList.add("dropdown-item", "text-light");
-        newUstensilTag.setAttribute("href", "#");
-        newUstensilTag.textContent = ustensilsArray[i];
-
-        ustensilsDropdown.appendChild(newUstensilTag);
-    }
-}*/
 
 //function call to load initial homepage
 loadRecipeCards();
 loadIngredientTags();
 loadDeviceTags();
 loadUstensilsTags();
+
+//load ingredients of Advanced search with use typing input
+ingredientsInput.addEventListener("keypress", ($event) => {
+    let ingredientInputValue = ingredientsInput.value.toLowerCase() + $event.key.toLowerCase();
+
+    function filterIngredients(ingredient){
+        return ingredient.toLowerCase().includes(ingredientInputValue);
+    }
+
+    ingredientsArray = ingredientsArray.filter(filterIngredients);
+
+    ingredientsDropdown.innerHTML = "";
+    loadIngredientTags();
+
+    //console.log(ingredientInputValue);
+});
+
+ingredientsInput.addEventListener("keydown", ($event) => {
+    if($event.key == "Backspace"){
+        let uncutIngredientValue = ingredientsInput.value.toLowerCase();
+        let ingredientInputValue = uncutIngredientValue.slice(0, uncutIngredientValue.length - 1);
+
+        console.log(ingredientInputValue);
+    }
+});

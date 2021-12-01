@@ -30,19 +30,19 @@
   color: white;
 }
 
-#device-filter::-webkit-input-placeholder {
+#devices-filter::-webkit-input-placeholder {
   color: white;
 }
 
-#device-filter:-ms-input-placeholder {
+#devices-filter:-ms-input-placeholder {
   color: white;
 }
 
-#device-filter::-ms-input-placeholder {
+#devices-filter::-ms-input-placeholder {
   color: white;
 }
 
-#device-filter::placeholder {
+#devices-filter::placeholder {
   color: white;
 }
 
