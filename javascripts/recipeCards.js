@@ -8,6 +8,11 @@ const dropDownItems = document.getElementsByClassName('dropdown-item');
 const selectedFilters = document.getElementById('selected-filters');
 const tagRemoveIcon = document.getElementsByClassName('tag-close-button');
 const ingredientsInput = document.getElementById('ingredients-filter');
+const devicesInput = document.getElementById('devices-filter');
+const ustensilsInput = document.getElementById('ustensils-filter');
+const ingredientGroup = document.getElementById('ingredient-group');
+const deviceGroup = document.getElementById('device-group');
+const ustensilGroup = document.getElementById('ustensil-group');
 
 
 //initialise needed arrays
@@ -187,6 +192,8 @@ function loadIngredientTags(){
             ustensilsDropdown.innerHTML = "";
             loadUstensilsTags();
 
+            ingredientsInput.value = "";
+
 
             /*newCloseAnchor.addEventListener("click", ($event) => {
                 $event.target.parentNode.parentNode.remove();
@@ -198,7 +205,7 @@ function loadIngredientTags(){
             });*/
         });
     }
-}
+}  
 
 //function to load Devices of the advanced tag search
 function loadDeviceTags(){
@@ -273,6 +280,8 @@ function loadDeviceTags(){
             loadDeviceTags();
             ustensilsDropdown.innerHTML = "";
             loadUstensilsTags();
+
+            devicesInput.value = "";
 
             /*newCloseAnchor.addEventListener("click", ($event) => {
                 $event.target.parentNode.parentNode.remove();
@@ -360,6 +369,7 @@ function loadUstensilsTags(){
             ustensilsDropdown.innerHTML = "";
             loadUstensilsTags();
 
+            ustensilsInput.value = "";
 
             /*newCloseAnchor.addEventListener("click", ($event) => {
                 $event.target.parentNode.parentNode.remove();
@@ -374,15 +384,13 @@ function loadUstensilsTags(){
 }
 
 
-
-
 //function call to load initial homepage
 loadRecipeCards();
 loadIngredientTags();
 loadDeviceTags();
 loadUstensilsTags();
 
-//load ingredients of Advanced search with use typing input
+//load ingredients of Advanced search with user typing input
 ingredientsInput.addEventListener("keypress", ($event) => {
     let ingredientInputValue = ingredientsInput.value.toLowerCase() + $event.key.toLowerCase();
 
@@ -395,14 +403,65 @@ ingredientsInput.addEventListener("keypress", ($event) => {
     ingredientsDropdown.innerHTML = "";
     loadIngredientTags();
 
-    //console.log(ingredientInputValue);
+    onFocusInput(ingredientGroup, ingredientsDropdown, ingredientsInput, " an ingredient");
 });
 
-ingredientsInput.addEventListener("keydown", ($event) => {
-    if($event.key == "Backspace"){
-        let uncutIngredientValue = ingredientsInput.value.toLowerCase();
-        let ingredientInputValue = uncutIngredientValue.slice(0, uncutIngredientValue.length - 1);
+//load devices of Advanced search with user typing input
+devicesInput.addEventListener("keypress", ($event) => {
+    let deviceInputValue = devicesInput.value.toLowerCase() + $event.key.toLowerCase();
 
-        console.log(ingredientInputValue);
+    function filterdevices(device){
+        return device.toLowerCase().includes(deviceInputValue);
     }
+
+   devicesArray = devicesArray.filter(filterdevices);
+
+    devicesDropdown.innerHTML = "";
+    loadDeviceTags();
+
+    onFocusInput(deviceGroup, devicesDropdown, devicesInput, " a device");
 });
+
+//load ingredients of Advanced search with user typing input
+ustensilsInput.addEventListener("keypress", ($event) => {
+    let ustensilInputValue = ustensilsInput.value.toLowerCase() + $event.key.toLowerCase();
+
+    function filterustensils(ustensil){
+        return ustensil.toLowerCase().includes(ustensilInputValue);
+    }
+
+    ustensilsArray = ustensilsArray.filter(filterustensils);
+
+    ustensilsDropdown.innerHTML = "";
+    loadUstensilsTags();
+
+    onFocusInput(ustensilGroup, ustensilsDropdown, ustensilsInput, " a ustensil");
+});
+
+
+//function for focus use in HTML
+function onFocusInput(Group, Dropdown, Input, PlaceHolder){
+    Group.classList.remove("col-2");
+    Input.setAttribute("placeholder", "Search" + PlaceHolder);
+
+    if(Dropdown.childElementCount > 2){
+        Group.setAttribute("style", "width: 720px");
+        Dropdown.setAttribute("style", "min-width: 720px; max-width: 720px; top: 43px;");
+    } if(Dropdown.childElementCount == 2){
+        Group.setAttribute("style", "width: 400px");
+        Dropdown.setAttribute("style", "min-width: 400px; max-width: 400px; top: 43px;");
+    } if(Dropdown.childElementCount < 2){
+        Group.setAttribute("style", "min-width: 300px; max-width: 300px");
+        Dropdown.setAttribute("style", "min-width: 300px; max-width: 300px; top: 43px;");
+    } if(Dropdown.childElementCount == 0){
+        Group.classList.add("col-2");
+        Dropdown.setAttribute("style", "display:none;");
+    }
+}
+
+//focus for blur use in HTML
+function onBlurInput(Group, Input, PlaceHolder){
+    Group.classList.add("col-2");
+    Group.removeAttribute("style");
+    Input.setAttribute("placeholder", PlaceHolder);
+}

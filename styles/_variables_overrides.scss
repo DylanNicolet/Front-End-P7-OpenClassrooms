@@ -23,3 +23,14 @@ $success: rgb(24, 199, 106);
 .columns{
     column-count: 3;
 }
+
+#ingredients-dropdown{
+    max-height: 500px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}

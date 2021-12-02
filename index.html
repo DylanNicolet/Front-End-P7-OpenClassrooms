@@ -39,9 +39,9 @@
 
         <!--Advanced filters-->
         <div class="d-flex mt-1">
-            <div class="btn-group bg-primary rounded col-2">
-                <input type="text" class="text-light form-control bg-primary border-primary"  id="ingredients-filter" placeholder="Ingredients">
-                <button type="button" class="btn btn-primary rounded py-2" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+            <div class="btn-group bg-primary rounded col-2 dropdown" id="ingredient-group">
+                <input type="text" class="text-light form-control bg-primary border-primary"  id="ingredients-filter" placeholder="Ingredients" data-toggle="dropdown" onfocus='onFocusInput(ingredientGroup, ingredientsDropdown, ingredientsInput, " an ingredient")' onblur='onBlurInput(ingredientGroup, ingredientsInput, "Ingredients")'>
+                <button type="button" class="btn btn-primary rounded py-2" data-toggle="dropdown" aria-expanded="false" data-reference="parent" onclick='onFocusInput(ingredientGroup, ingredientsDropdown, ingredientsInput, " an ingredient")' onblur='onBlurInput(ingredientGroup, ingredientsInput, "Ingredients")'>
                     <i class="fas fa-chevron-down mx-2"></i>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
@@ -49,9 +49,9 @@
                 </div><!--always add bg-color class in front of the class list-->
             </div>
 
-            <div class="btn-group bg-success rounded mx-3 col-2">
-                <input type="text" class="text-light form-control bg-success border-success"  id="devices-filter" placeholder="Devices">
-                <button type="button" class="btn btn-success rounded text-light" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+            <div class="btn-group bg-success rounded mx-3 col-2 dropdown" id="device-group">
+                <input type="text" class="text-light form-control bg-success border-success"  id="devices-filter" placeholder="Devices" data-toggle="dropdown" onfocus='onFocusInput(deviceGroup, devicesDropdown, devicesInput, " a device")' onblur='onBlurInput(deviceGroup, devicesInput, "Devices")'>
+                <button type="button" class="btn btn-success rounded text-light" data-toggle="dropdown" aria-expanded="false" data-reference="parent" onclick='onFocusInput(deviceGroup, devicesDropdown, devicesInput, " a device")' onblur='onBlurInput(deviceGroup, devicesInput, "Devices")'>
                     <i class="fas fa-chevron-down mx-2"></i>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
@@ -59,9 +59,9 @@
                 </div><!--always add bg-color class in front of the class list-->
             </div>
 
-            <div class="btn-group bg-danger rounded col-2">
-                <input type="text" class="text-light form-control bg-danger border-danger"  id="ustensils-filter" placeholder="Ustensils">
-                <button type="button" class="btn btn-danger rounded" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+            <div class="btn-group bg-danger rounded col-2" id="ustensil-group">
+                <input type="text" class="text-light form-control bg-danger border-danger"  id="ustensils-filter" placeholder="Ustensils" data-toggle="dropdown" onfocus='onFocusInput(ustensilGroup, ustensilsDropdown, ustensilsInput, " a ustensil")' onblur='onBlurInput(ustensilGroup, ustensilsInput, "ustensil")'>
+                <button type="button" class="btn btn-danger rounded" data-toggle="dropdown" aria-expanded="false" data-reference="parent" onclick='onFocusInput(ustensilGroup, ustensilsDropdown, ustensilsInput, " a ustensil")' onblur='onBlurInput(ustensilGroup, ustensilsInput, "ustensil")'>
                     <i class="fas fa-chevron-down mx-2"></i>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
