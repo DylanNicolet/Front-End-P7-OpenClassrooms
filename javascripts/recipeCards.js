@@ -117,6 +117,29 @@ function loadRecipeCards(){
     };
 }
 
+//function used for .filter() in the following 3 functions
+function advancedFilter(recipe){
+    let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
+    let currentRecipeIngredients = recipe.ingredients;
+    let currentRecipeUstensils = recipe.ustensils;
+    let ingredientList = "";
+    let ustensilList = "";
+    
+
+    for(let k=0; k<currentRecipeIngredients.length; k++){
+        ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
+    }
+
+    for(let l=0; l<currentRecipeUstensils.length; l++){
+        ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
+    }
+
+    let totalRecipeData = recipeDevices += ustensilList += ingredientList;
+
+    let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
+
+    return doesArrayContainSearchInput;
+}
 
 //function to load ingredients of the advanced tag search
 function loadIngredientTags(){
@@ -154,33 +177,7 @@ function loadIngredientTags(){
 
             advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
 
-
-            function advancedFilter(recipe){ //filtering function used right after
-                let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
-                let currentRecipeIngredients = recipe.ingredients;
-                let currentRecipeUstensils = recipe.ustensils;
-                let ingredientList = "";
-                let ustensilList = "";
-                
-
-                for(let k=0; k<currentRecipeIngredients.length; k++){
-                    ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
-                }
-
-                for(let l=0; l<currentRecipeUstensils.length; l++){
-                    ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
-                }
-
-                let totalRecipeData = recipeDevices += ustensilList += ingredientList;
-
-                let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
-
-                return doesArrayContainSearchInput;
-            }
-
             filteredRecipes = filteredRecipes.filter(advancedFilter);
-
-
             
             cardContainer.innerHTML = ""; //clear cards
             loadRecipeCards(); //reload cards using new data
@@ -243,34 +240,8 @@ function loadDeviceTags(){
 
             advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
 
-
-            function advancedFilter(recipe){ //filtering function used right after
-                let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
-                let currentRecipeIngredients = recipe.ingredients;
-                let currentRecipeUstensils = recipe.ustensils;
-                let ingredientList = "";
-                let ustensilList = "";
-                
-
-                for(let k=0; k<currentRecipeIngredients.length; k++){
-                    ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
-                }
-
-                for(let l=0; l<currentRecipeUstensils.length; l++){
-                    ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
-                }
-
-                let totalRecipeData = recipeDevices += ustensilList += ingredientList;
-
-                let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
-
-                return doesArrayContainSearchInput;
-            }
-
             filteredRecipes = filteredRecipes.filter(advancedFilter);
 
-
-            
             cardContainer.innerHTML = ""; //clear cards
             loadRecipeCards(); //reload cards using new data
 
@@ -331,34 +302,8 @@ function loadUstensilsTags(){
 
             advancedSearchArray.push($event.target.textContent.toLowerCase()); //add every selected tags to an array
 
-
-            function advancedFilter(recipe){ //filtering function used right after
-                let recipeDevices = recipe.appliance.toLowerCase() + "&nbsp";
-                let currentRecipeIngredients = recipe.ingredients;
-                let currentRecipeUstensils = recipe.ustensils;
-                let ingredientList = "";
-                let ustensilList = "";
-                
-
-                for(let k=0; k<currentRecipeIngredients.length; k++){
-                    ingredientList += currentRecipeIngredients[k].ingredient.toLowerCase() + "&nbsp";
-                }
-
-                for(let l=0; l<currentRecipeUstensils.length; l++){
-                    ustensilList += currentRecipeUstensils[l].toLowerCase() + "&nbsp";
-                }
-
-                let totalRecipeData = recipeDevices += ustensilList += ingredientList;
-
-                let doesArrayContainSearchInput = advancedSearchArray.every(fruit => totalRecipeData.includes(fruit)); //does the array contain all tags selected (returns boulean)
-
-                return doesArrayContainSearchInput;
-            }
-
             filteredRecipes = filteredRecipes.filter(advancedFilter);
 
-
-            
             cardContainer.innerHTML = ""; //clear cards
             loadRecipeCards(); //reload cards using new data
 
