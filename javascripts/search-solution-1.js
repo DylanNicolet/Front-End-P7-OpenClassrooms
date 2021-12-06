@@ -28,6 +28,12 @@ searchBar.addEventListener("keypress", ($event) => {
 
         cardContainer.innerHTML = "";
         loadRecipeCards();
+        ingredientsDropdown.innerHTML = "";
+        loadIngredientTags();
+        devicesDropdown.innerHTML = "";
+        loadDeviceTags();
+        ustensilsDropdown.innerHTML = "";
+        loadUstensilsTags();
     }
 });
 
@@ -59,5 +65,11 @@ searchBar.addEventListener("keydown", ($event) => {
 
         cardContainer.innerHTML = "";
         loadRecipeCards();
+        ingredientsDropdown.innerHTML = "";
+        loadIngredientTags();
+        devicesDropdown.innerHTML = "";
+        loadDeviceTags();
+        ustensilsDropdown.innerHTML = "";
+        loadUstensilsTags();
     }
 })
