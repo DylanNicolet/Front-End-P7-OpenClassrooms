@@ -33,6 +33,17 @@ searchBar.addEventListener("keypress", ($event) => {
         
         cardContainer.innerHTML = "";
         loadRecipeCards();
+        ingredientsDropdown.innerHTML = "";
+        loadIngredientTags();
+        devicesDropdown.innerHTML = "";
+        loadDeviceTags();
+        ustensilsDropdown.innerHTML = "";
+        loadUstensilsTags();
+
+        if(filteredRecipes.length < 1){
+            cardContainer.innerHTML = "";
+            cardContainer.textContent = "No recipe matches your criteria...you can search for 'apple pie', 'fish' etc...";
+        };
     }
 });
 
@@ -65,6 +76,17 @@ searchBar.addEventListener("keydown", ($event) => {
 
         cardContainer.innerHTML = "";
         loadRecipeCards();
+        ingredientsDropdown.innerHTML = "";
+        loadIngredientTags();
+        devicesDropdown.innerHTML = "";
+        loadDeviceTags();
+        ustensilsDropdown.innerHTML = "";
+        loadUstensilsTags();
+
+        if(filteredRecipes.length < 1){
+            cardContainer.innerHTML = "";
+            cardContainer.textContent = "No recipe matches your criteria...you can search for 'apple pie', 'fish' etc...";
+        };
     }
 })
 
