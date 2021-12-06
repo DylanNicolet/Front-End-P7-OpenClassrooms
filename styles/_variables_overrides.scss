@@ -8,16 +8,31 @@ $success: rgb(24, 199, 106);
     color:rgb(161, 161, 161);
 }
 
-#ingredients-filter::placeholder{
-    color: white;
+#ingredients-filter{
+    box-shadow: none;
+    outline: auto 0px;
+
+    &::placeholder{
+        color: white;
+    }
 }
 
-#devices-filter::placeholder{
-    color: white;
+#devices-filter{
+    box-shadow: none;
+    outline: auto 0px;
+    
+    &::placeholder{
+        color: white;
+    }
 }
 
-#ustensils-filter::placeholder{
-    color: white;
+#ustensils-filter{
+    box-shadow: none;
+    outline: auto 0px;
+    
+    &::placeholder{
+        color: white;
+    }
 }
 
 .columns{

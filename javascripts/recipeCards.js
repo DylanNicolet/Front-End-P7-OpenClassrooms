@@ -422,7 +422,7 @@ devicesInput.addEventListener("keypress", ($event) => {
     onFocusInput(deviceGroup, devicesDropdown, devicesInput, " a device");
 });
 
-//load ingredients of Advanced search with user typing input
+//load ustensils of Advanced search with user typing input
 ustensilsInput.addEventListener("keypress", ($event) => {
     let ustensilInputValue = ustensilsInput.value.toLowerCase() + $event.key.toLowerCase();
 

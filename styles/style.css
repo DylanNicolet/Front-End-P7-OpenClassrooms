@@ -14,6 +14,12 @@
   color: #a1a1a1;
 }
 
+#ingredients-filter {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: auto 0px;
+}
+
 #ingredients-filter::-webkit-input-placeholder {
   color: white;
 }
@@ -30,6 +36,12 @@
   color: white;
 }
 
+#devices-filter {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: auto 0px;
+}
+
 #devices-filter::-webkit-input-placeholder {
   color: white;
 }
@@ -44,6 +56,12 @@
 
 #devices-filter::placeholder {
   color: white;
+}
+
+#ustensils-filter {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: auto 0px;
 }
 
 #ustensils-filter::-webkit-input-placeholder {
