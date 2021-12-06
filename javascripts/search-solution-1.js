@@ -34,6 +34,11 @@ searchBar.addEventListener("keypress", ($event) => {
         loadDeviceTags();
         ustensilsDropdown.innerHTML = "";
         loadUstensilsTags();
+
+        if(filteredRecipes.length < 1){
+            cardContainer.innerHTML = "";
+            cardContainer.textContent = "No recipe matches your criteria...you can search for 'apple pie', 'fish' etc...";
+        };
     }
 });
 
@@ -71,5 +76,10 @@ searchBar.addEventListener("keydown", ($event) => {
         loadDeviceTags();
         ustensilsDropdown.innerHTML = "";
         loadUstensilsTags();
+
+        if(filteredRecipes.length < 1){
+            cardContainer.innerHTML = "";
+            cardContainer.textContent = "No recipe matches your criteria...you can search for 'apple pie', 'fish' etc...";
+        };
     }
 })
