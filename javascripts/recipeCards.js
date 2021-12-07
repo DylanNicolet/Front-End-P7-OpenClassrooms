@@ -386,7 +386,8 @@ ustensilsInput.addEventListener("keypress", ($event) => {
 
 //function for focus use in HTML
 function onFocusInput(Group, Dropdown, Input, PlaceHolder){
-    Group.classList.remove("col-2");
+    Group.classList.remove("col-2", "rounded");
+    Group.classList.add("rounded-0","rounded-top");
     Input.setAttribute("placeholder", "Search" + PlaceHolder);
 
     if(Dropdown.childElementCount > 2){
@@ -399,14 +400,16 @@ function onFocusInput(Group, Dropdown, Input, PlaceHolder){
         Group.setAttribute("style", "min-width: 300px; max-width: 300px");
         Dropdown.setAttribute("style", "min-width: 300px; max-width: 300px; top: 43px;");
     } if(Dropdown.childElementCount == 0){
-        Group.classList.add("col-2");
+        Group.classList.add("col-2", "rounded");
+        Group.classList.remove("rounded-0","rounded-top");
         Dropdown.setAttribute("style", "display:none;");
     }
 }
 
 //focus for blur use in HTML
 function onBlurInput(Group, Input, PlaceHolder){
-    Group.classList.add("col-2");
+    Group.classList.add("col-2", "rounded");
     Group.removeAttribute("style");
+    Group.classList.remove("rounded-0","rounded-top");
     Input.setAttribute("placeholder", PlaceHolder);
 }
