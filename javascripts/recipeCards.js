@@ -48,10 +48,10 @@ function loadRecipeCards(){
         recipeDescription.textContent = filteredRecipes[i].description;
 
         newCardCol.classList.add("col-4", "py-3","d-flex", "justify-content-between");
-        newCard.classList.add("card", "rounded");
+        newCard.classList.add("card", "rounded", "border-0");
         newCardImage.classList.add("card-img-top", "rounded-top");
         newCardImage.setAttribute("src", "/images/recipe-background.png");
-        newCardBody.classList.add("card-body");
+        newCardBody.classList.add("card-body", "bg-light", "rounded");
         titleWithTimer.classList.add("d-flex", "justify-content-between", "align-items-center", "mb-3");
         timerIconWithTimer.classList.add("d-flex", "justify-content-between", "align-items-center");
         newTitle.classList.add("card-title", "m-0");

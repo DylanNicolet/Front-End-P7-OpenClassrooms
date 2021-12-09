@@ -1,5 +1,6 @@
 //Bootstrap overides
 $success: rgb(24, 199, 106);
+$light: rgb(226, 226, 226);
 
 
 
@@ -11,6 +12,7 @@ $success: rgb(24, 199, 106);
 #ingredients-filter{
     box-shadow: none;
     outline: auto 0px;
+    font-size: 1.2rem;
 
     &::placeholder{
         color: white;
@@ -20,6 +22,7 @@ $success: rgb(24, 199, 106);
 #devices-filter{
     box-shadow: none;
     outline: auto 0px;
+    font-size: 1.2rem;
     
     &::placeholder{
         color: white;
@@ -29,6 +32,7 @@ $success: rgb(24, 199, 106);
 #ustensils-filter{
     box-shadow: none;
     outline: auto 0px;
+    font-size: 1.2rem;
     
     &::placeholder{
         color: white;
