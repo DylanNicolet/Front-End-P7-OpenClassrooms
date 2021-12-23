@@ -190,16 +190,6 @@ function loadIngredientTags(){
             loadUstensilsTags();
 
             ingredientsInput.value = "";
-
-
-            /*newCloseAnchor.addEventListener("click", ($event) => {
-                $event.target.parentNode.parentNode.remove();
-                advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
-                filteredRecipes = filteredRecipes.filter(advancedFilter);
-
-                loadRecipeCards;
-                console.log(advancedSearchArray);
-            });*/
         });
     }
 }  
@@ -253,15 +243,6 @@ function loadDeviceTags(){
             loadUstensilsTags();
 
             devicesInput.value = "";
-
-            /*newCloseAnchor.addEventListener("click", ($event) => {
-                $event.target.parentNode.parentNode.remove();
-                advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
-                filteredRecipes = filteredRecipes.filter(advancedFilter);
-
-                loadRecipeCards;
-                console.log(advancedSearchArray);
-            });*/
         });
     }
 }
@@ -315,15 +296,6 @@ function loadUstensilsTags(){
             loadUstensilsTags();
 
             ustensilsInput.value = "";
-
-            /*newCloseAnchor.addEventListener("click", ($event) => {
-                $event.target.parentNode.parentNode.remove();
-                advancedSearchArray = advancedSearchArray.filter(item => item !== $event.target.id);
-                filteredRecipes = filteredRecipes.filter(advancedFilter);
-
-                loadRecipeCards;
-                console.log(advancedSearchArray);
-            });*/
         });
     }
 }
